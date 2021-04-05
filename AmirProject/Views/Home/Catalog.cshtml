@@ -1,0 +1,19 @@
+﻿
+@{
+    ViewData["Title"] = "Catalog";
+    Layout = "~/Views/Sherd/_Layout.cshtml";
+}
+
+@foreach (var pet in Model)
+{
+    <div class="card" style="width: 18rem;">
+        <img src="..." class="card-img-top" alt="...">
+        <div class="card-body">
+            <h5 class="card-title">@pet.Name</h5>
+            <p class="card-text">@pet.Desctiption</p>
+            <a href="#" class="btn btn-primary">Link To</a>
+        </div>
+    </div>
+}
+
+

@@ -1,0 +1,42 @@
+﻿@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Sherd/_Layout.cshtml";
+}
+<div class="dropdown text-center p-1">
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        @if (ViewBag.test == 0)
+        {
+            <div>All Animals</div>
+        }
+        else
+        {
+            @foreach (AmirProject.Models.Categories catalog in ViewBag.CategoryName)
+            {
+                @if(catalog.CategoryId == ViewBag.test)
+                {
+                    <div>@catalog.Name</div>
+                }
+            }
+        }
+    </button>
+    <div class="dropdown-menu text-center" aria-labelledby="dropdownMenuButton">
+        <a class="dropdown-item" asp-action="Index" asp-controller="Catalog" asp-route-categoryId="0">All</a>
+        @foreach (AmirProject.Models.Categories catalog in ViewBag.CategoryName)
+        {
+            <a class="dropdown-item" asp-action="Index" asp-controller="Catalog" asp-route-categoryId="@catalog.CategoryId">@catalog.Name</a>
+        }
+    </div>
+</div>
+@foreach (var pet in Model)
+{
+    <div class="shadow-sm p-1 mb-1 bg-white rounded">
+        <div class="media position-relative">
+            <img class="catalogimg" src="@pet.PictureName" alt="@pet.PictureName">
+            <div class="media-body">
+                <h5 class="mt-0">@pet.Name</h5>
+                <p>@pet.Desctiption</p>
+                <a asp-action="Animal" asp-controller="Catalog" asp-route-animalid="@pet.AnimalId" class="stretched-link">Show Pet</a>
+            </div>
+        </div>
+    </div>
+}

@@ -1,0 +1,36 @@
+﻿@{
+    ViewData["Title"] = "Animal";
+    Layout = "~/Views/Sherd/_Layout.cshtml";
+}
+<div class="text-center">
+    <img src="@Model.PictureName" class="rounded mx-auto d-block" alt="@Model.PictureName">
+    <div>
+        <a>Name: </a>
+        @Model.Name
+    </div>
+    <div>
+        <a>Age: </a>
+        @Model.Age
+    </div>
+    <div>
+        <a>Desctiption: </a>
+        @Model.Desctiption
+    </div>
+    <div>
+        <br /><div>Comments:</div>
+        @foreach (var comment in Model.Comments)
+        {
+            <li class="list-group-item">@comment.Comment</li>
+        }
+    </div>
+    <form method="post" asp-action="Upload_Comment" asp-route-animalID="@Model.AnimalId">
+        <div class="form-group">
+            <br />
+            <br />
+            <label for="fname">Comment:</label><br>
+            <textarea class="form-control" id="CommentId" name="comment" rows="3"></textarea>
+            <input class="btn btn-primary" type="submit" value="Submit"/>
+        </div>
+    </form>
+</div>
+
